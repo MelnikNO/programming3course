@@ -38,4 +38,6 @@ sys.path.append("http://localhost:8000")
 
 ## Решение
 
-- Создали файл ```myremotemodule.py``` и разместили код: [myremotemodule.py]()
+- Создали файл ```myremotemodule.py``` и разместили код: [myremotemodule.py](https://github.com/MelnikNO/programming3course/blob/main/1sem/LR1/myremotemodule.py)
+
+- Создали файл ```activation_script.py``` с содержимым функций ```url_hook``` и классов ```URLLoader```, ```URLFinder```: 
