@@ -30,9 +30,9 @@ sys.path.append("http://localhost:8000")
 В ```path_hooks``` будет содержатся наша функция ```url_hook```. 
 
 8. Протестируйте работу удаленного импорта, используя в качестве источника модуля другие "хостинги" (например, repl.it, github pages, beget, sprinthost). 
-10. Переписать содержимое функции url_hook, класса URLLoader с помощью модуля ```requests``` (см. комменты).
-11. Задание со звездочкой (\*): реализовать обработку исключения в ситуации, когда хост (где лежит модуль) недоступен.
-12. Задание про-уровня (\*\*\*): реализовать загрузку **пакета**, разобравшись с аргументами функции spec_from_loader и внутренним устройством импорта пакетов. 
+9. Переписать содержимое функции url_hook, класса URLLoader с помощью модуля ```requests``` (см. комменты).
+10. Задание со звездочкой (\*): реализовать обработку исключения в ситуации, когда хост (где лежит модуль) недоступен.
+11. Задание про-уровня (\*\*\*): реализовать загрузку **пакета**, разобравшись с аргументами функции spec_from_loader и внутренним устройством импорта пакетов. 
 
 ---
 
@@ -80,4 +80,85 @@ httpd.serve_forever()
 
 Задание про-уровня (\*\*\*): реализовать загрузку **пакета**, разобравшись с аргументами функции spec_from_loader и внутренним устройством импорта пакетов. 
 
-Оно представлено в файле 
+Оно представлено в файле [activation_scriptrequest.py](https://github.com/MelnikNO/programming3course/blob/main/1sem/LR1/activation_scriptrequest.py)
+
+
+9. Переписать содержимое функции url_hook, класса URLLoader с помощью модуля ```requests```
+
+```
+response = requests.get(some_str)
+data = response.text
+```
+
+```
+response = requests.get(module.__spec__.origin)
+source = response.text
+```
+
+10. Задание со звездочкой (\*): реализовать обработку исключения в ситуации, когда хост (где лежит модуль) недоступен
+
+```
+    try:
+        response = requests.get(some_str)
+        data = response.text
+        filenames = re.findall("[a-zA-Z_][a-zA-Z0-9_]*.py", data)
+        modnames = {name[:-3] for name in filenames}
+        return URLFinder(some_str, modnames)
+
+    except requests.exceptions.RequestException as e:
+        print(f"Ошибка: Не удалось подключиться к {some_str}")
+        print(f"Причина: {e}")
+        raise ImportError(f"Хост недоступен: {some_str}")
+```
+
+```
+        try:
+            response = requests.get(module.__spec__.origin)
+            source = response.text
+            code = compile(source, module.__spec__.origin, mode="exec")
+            exec(code, module.__dict__)
+
+        except requests.exceptions.RequestException as e:
+            raise ImportError(f"Не удалось загрузить модуль {module.__spec__.origin}: {e}")
+```
+
+11. Задание про-уровня (\*\*\*): реализовать загрузку **пакета**, разобравшись с аргументами функции spec_from_loader и внутренним устройством импорта пакетов
+
+```
+        directories = re.findall(r'<a href="([a-zA-Z_][a-zA-Z0-9_]*)/">', data)
+        for directory in directories:
+            try:
+                init_url = f"{some_str.rstrip('/')}/{directory}/__init__.py"
+                init_response = requests.get(init_url)
+                if init_response.status_code == 200:
+                    modnames.add(directory)
+            except:
+                continue
+```
+
+```
+            package_check_url = f"{self.url}/{name}/"
+            try:
+                response = requests.get(package_check_url)
+                if response.status_code == 200:
+                    origin = f"{self.url}/{name}/__init__.py"
+                    loader = URLLoader()
+                    return spec_from_loader(name, loader, origin=origin, is_package=True)
+            except:
+                pass
+```
+
+* Демонастрация удаленной работы импорта (хостинг)
+
+Аналогично пункту 8
+
+<img width="963" height="652" alt="image_2025-09-09_23-44-48" src="https://github.com/user-attachments/assets/315e7081-62aa-450e-afe5-ffcd2629e685" />
+
+
+---
+
+### Комментарий
+
+Задание не вызвала особых сложностей, за исключением пункта 11 и демонстрация на других хостингах (replit).
+Replit не хотел делать ```import package```, как это было в локлаьной демонстрации, и это получилось реализовать только после пункта 11.
+А в пункте 11 надо было достаточно подумать, чтобы реализовать это.
