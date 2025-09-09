@@ -40,4 +40,44 @@ sys.path.append("http://localhost:8000")
 
 - Создали файл ```myremotemodule.py``` и разместили код: [myremotemodule.py](https://github.com/MelnikNO/programming3course/blob/main/1sem/LR1/myremotemodule.py)
 
-- Создали файл ```activation_script.py``` с содержимым функций ```url_hook``` и классов ```URLLoader```, ```URLFinder```: 
+- Создали файл ```activation_script.py``` с содержимым функций ```url_hook``` и классов ```URLLoader```, ```URLFinder```: [activation_script.py](https://github.com/MelnikNO/programming3course/blob/main/1sem/LR1/activation_script.py)
+
+- Демонастрация удаленной работы импорта (локально)
+
+<img width="1037" height="130" alt="image" src="https://github.com/user-attachments/assets/9c8ef2ca-8741-4167-b6f3-37129059252c" />
+
+<img width="1477" height="361" alt="image" src="https://github.com/user-attachments/assets/5deac449-4680-4836-adf5-b13eaed91103" />
+
+- Демонастрация удаленной работы импорта (хостинг)
+
+Использован Replit. [Борд один для запуска импорта](https://replit.com/@yrmelnikno/programming3curs?v=1) и [брод 2 для показа удаленного импорта](https://replit.com/@yrmelnikno/progra3curssecond?v=1)
+
+Для запуска создали файл main.py и написали программу:
+
+```
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+import os
+
+class Handler(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        super().end_headers()
+
+port = int(os.environ.get("PORT", 5000))
+httpd = HTTPServer(('0.0.0.0', port), Handler)
+print(f"Server running on port {port}")
+httpd.serve_forever()
+```
+
+<img width="851" height="534" alt="image" src="https://github.com/user-attachments/assets/ad7af0fd-7e2c-4f4c-bf30-659cd626ab11" />
+
+
+<img width="1198" height="462" alt="image_2025-09-09_15-22-49" src="https://github.com/user-attachments/assets/34987f0a-abc9-4bf0-8387-82423a710d70" />
+
+- Переписать содержимое функции url_hook, класса URLLoader с помощью модуля ```requests``` (см. комменты).
+
+Задание со звездочкой (\*): реализовать обработку исключения в ситуации, когда хост (где лежит модуль) недоступен.
+
+Задание про-уровня (\*\*\*): реализовать загрузку **пакета**, разобравшись с аргументами функции spec_from_loader и внутренним устройством импорта пакетов. 
+
+Оно представлено в файле 
