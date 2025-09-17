@@ -55,4 +55,10 @@ class FibonacchiLst:
 
 ## Комментарий
 
-Задание не вызвало сложностей. Мы создали программу, которая генерирует список элементов из ряда Фибоначчи. А также прописали код, который возвращает список чисел Фибоначчи с помощью итератора (класс ```FibonacchiLst```). Затем дополнили код тестами ([test_fib.py]())
+Задание не вызвало сложностей. Мы создали программу, которая генерирует список элементов из ряда Фибоначчи. А также прописали код, который возвращает список чисел Фибоначчи с помощью итератора (класс ```FibonacchiLst```). Затем дополнили код тестами ([test_fib.py](https://github.com/MelnikNO/programming3course/blob/main/1sem/LR2/test_fib.py))
+
+## Результат
+
+<img width="653" height="289" alt="image" src="https://github.com/user-attachments/assets/7d463980-7d4e-40b0-9ae6-2fb787248539" />
+
+<img width="1807" height="271" alt="image" src="https://github.com/user-attachments/assets/0bc47a86-9a0c-457c-af89-a950c59df131" />
