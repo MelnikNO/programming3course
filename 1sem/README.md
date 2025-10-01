@@ -3,3 +3,5 @@
 ## Лабораторная работа № 1 - [ЛР1](https://github.com/MelnikNO/programming3course/tree/main/1sem/LR1#readme)
 
 ## Лабораторная работа № 2 - [ЛР2](https://github.com/MelnikNO/programming3course/tree/main/1sem/LR2#readme)
+
+## Лабораторная работа № 3 - [ЛР3](https://github.com/MelnikNO/weather-api/tree/main)
