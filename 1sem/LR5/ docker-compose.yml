@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  glossary-app:
+    build: .
+    ports:
+      - "50051:50051"
+      - "8080:8080"
+    volumes:
+      - glossary_data:/app/glossary_data
+    restart: unless-stopped
+
+volumes:
+  glossary_data:

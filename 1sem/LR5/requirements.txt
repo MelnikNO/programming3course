@@ -1,0 +1,3 @@
+grpcio==1.75.1
+protobuf==6.33.0rc2
+flask==2.3.3

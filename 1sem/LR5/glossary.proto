@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package glossary;
+
+service GlossaryService {
+  // Получение списка всех терминов
+  rpc ListTerms(ListTermsRequest) returns (ListTermsResponse);
+
+  // Получение информации о конкретном термине по ключевому слову
+  rpc GetTerm(GetTermRequest) returns (TermResponse);
+
+  // Добавление нового термина с описанием
+  rpc CreateTerm(CreateTermRequest) returns (TermResponse);
+
+  // Обновление существующего термина
+  rpc UpdateTerm(UpdateTermRequest) returns (TermResponse);
+
+  // Удаление термина из глоссария
+  rpc DeleteTerm(DeleteTermRequest) returns (DeleteResponse);
+}
+
+message ListTermsRequest {
+  int32 skip = 1;
+  int32 limit = 2;
+}
+
+message ListTermsResponse {
+  repeated TermResponse terms = 1;
+  int32 total_count = 2;
+}
+
+message GetTermRequest {
+  string keyword = 1;
+}
+
+message CreateTermRequest {
+  string keyword = 1;
+  string description = 2;
+  string category = 3;
+  string examples = 4;
+}
+
+message UpdateTermRequest {
+  string keyword = 1;
+  string description = 2;
+  string category = 3;
+  string examples = 4;
+}
+
+message DeleteTermRequest {
+  string keyword = 1;
+}
+
+message TermResponse {
+  string keyword = 1;
+  string description = 2;
+  string category = 3;
+  string examples = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string message = 2;
+}
