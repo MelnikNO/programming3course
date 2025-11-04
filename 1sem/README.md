@@ -10,4 +10,4 @@
 
 ## Лабораторная работа № 5 - [ЛР5](https://github.com/MelnikNO/programming3course/tree/main/1sem/LR5#readme)
 
-## Лабораторная работа № 6 - [ЛР6]()
+## Лабораторная работа № 6 - [ЛР6](https://github.com/MelnikNO/programming3course/tree/main/1sem/LR6#readme)
