@@ -8,6 +8,6 @@
 
 ## Лабораторная работа № 4 - [ЛР4 (идентичное задание из 2 курса)](https://github.com/MelnikNO/programming-2c-2sem/tree/main/ЛР6)
 
-## Лабораторная работа № 5 - [ЛР5]()
+## Лабораторная работа № 5 - [ЛР5](https://github.com/MelnikNO/programming3course/tree/main/1sem/LR5#readme)
 
 ## Лабораторная работа № 6 - [ЛР6]()
